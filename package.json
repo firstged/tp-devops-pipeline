@@ -1,0 +1,11 @@
+{
+  "name": "mon-portfolio-devops",
+  "version": "1.0.0",
+  "description": "Portfolio déployé via Pipeline CI/CD",
+  "scripts": {
+    "test": "echo \"✅ Aucun test unitaire pour le moment... SUCCÈS\" && exit 0",
+    "build": "echo \"📦 Construction du site...\" && mkdir dist && cp -r app/* dist/"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

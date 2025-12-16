@@ -1,0 +1,47 @@
+name: CI Pipeline - Portfolio
+
+# 1. DÉCLENCHEURS (Triggers)
+# Le pipeline se lance quand on push sur main ou dev
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+
+# 2. JOBS (Les missions)
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # L'ordinateur virtuel prêté par GitHub
+
+    steps:
+      # A. Récupérer le code
+      - name: 🛎️ Checkout du code
+        uses: actions/checkout@v3
+
+      # B. Installer Node.js (environnement d'exécution)
+      - name: 🟢 Installation de Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      # C. Installer les dépendances (simulé ici)
+      - name: 📦 Installation des dépendances
+        run: npm install
+
+      # D. Lancer les tests (simulé via notre package.json)
+      - name: 🧪 Exécution des tests
+        run: npm test
+
+      # E. Construire l'artefact (simulé : on copie les fichiers dans un dossier dist)
+      - name: 🏗️ Build du projet
+        run: npm run build
+
+      # F. Sauvegarder l'artefact (Le dossier "dist" est zippé et stocké)
+      - name: 💾 Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-build
+          path: dist/
